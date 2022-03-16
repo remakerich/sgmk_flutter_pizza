@@ -1,16 +1,20 @@
-# sgmk_flutter_pizza
+## Задание
 
-A new Flutter project.
+Необходимо создать приложение для заказа пиццы с админкой. 
+На основном экране находятся элементы добавленные через админку с возможностью поиска по названию и быстрой фильтрации по цене. По нажатию на элемент он добавляется в корзину, при этом удаляется из основного списка.
+В корзине есть возможность указания количества у каждого элемента
+В админке есть возможность добавления нескольких элементов с указанием названия, цены и количества. Пользователь не может добавить больше товара чем указано в админке.
 
-## Getting Started
+Обязательные требования:
+Приложение должно быть написано на Flutter
+Использование архитектуры BLoC
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+Дополнительные требования:
+Unit тесты
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Дизайн: https://www.figma.com/file/Rt2mzsKUMh6QFRyzbC9ZHw/Pizza-Market?node-id=0%3A1
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Выполнение
+
+
