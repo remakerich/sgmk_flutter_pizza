@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sgmk_flutter_pizza/pages/admin_page.dart';
-import 'package:sgmk_flutter_pizza/pages/my_orders_page.dart';
-import 'package:sgmk_flutter_pizza/utils/ui.dart';
+import 'package:sgmk_flutter_pizza/widgets/pizza_app_bar.dart';
+import 'package:sgmk_flutter_pizza/widgets/pizza_scaffold.dart';
 
 class PizzaListPage extends StatelessWidget {
   const PizzaListPage({Key? key}) : super(key: key);
@@ -10,35 +9,11 @@ class PizzaListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          FittedBox(
-            alignment: Alignment.topCenter,
-            fit: BoxFit.cover,
-            child: Image.asset(
-              PizzaAssets.backgroundPicture,
-            ),
-          ),
-          Column(
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(MyOrdersPage.routeName);
-                },
-                child: Text('My orders'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(AdminPage.routeName);
-                },
-                child: Text('Admin'),
-              ),
-            ],
-          ),
-        ],
+    return const PizzaScaffold(
+      appBar: PizzaAppBar(
+        title: 'Pizza Market',
       ),
+      body: SizedBox(),
     );
   }
 }
