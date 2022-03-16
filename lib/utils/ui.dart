@@ -14,6 +14,7 @@ class PizzaAssets {
 class PizzaColors {
   static const backButton = Color.fromRGBO(244, 63, 94, 0.1);
   static const backButtonIcon = Color.fromRGBO(244, 63, 94, 0.7);
+  static const primary = Color(0xFFF43F5E);
 }
 
 class PizzaSizes {

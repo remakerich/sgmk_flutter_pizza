@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sgmk_flutter_pizza/blocs/pizza_market/pizza_market_bloc.dart';
 import 'package:sgmk_flutter_pizza/injection/injection.dart';
+import 'package:sgmk_flutter_pizza/utils/ui.dart';
 import 'package:sgmk_flutter_pizza/widgets/pizza_app_bar.dart';
 import 'package:sgmk_flutter_pizza/widgets/pizza_scaffold.dart';
 
@@ -32,9 +33,14 @@ class PizzaMarketPage extends StatelessWidget {
               itemCount: pizzaStock.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: () => context.read<PizzaMarketBloc>().add(PizzaMarketPicked(pizza: pizzaStock[index])),
+                  onTap: () => context.read<PizzaMarketBloc>().add(
+                        PizzaMarketPicked(
+                          pizza: pizzaStock[index],
+                        ),
+                      ),
                   child: Container(
                     margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                    padding: const EdgeInsets.fromLTRB(12, 12, 32, 12),
                     height: 88,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
@@ -48,8 +54,26 @@ class PizzaMarketPage extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
+                        Image.asset(
+                          pizzaStock[index].assetPicture,
+                        ),
+                        const SizedBox(width: 20),
+                        Expanded(
+                          child: Text(
+                            pizzaStock[index].name,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
                         Text(
-                          pizzaStock[index].name,
+                          '\$${pizzaStock[index].price.toString()}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 29,
+                            color: PizzaColors.primary,
+                          ),
                         ),
                       ],
                     ),
