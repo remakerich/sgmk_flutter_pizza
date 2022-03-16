@@ -26,17 +26,23 @@ class PizzaScaffold extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.white.withOpacity(0),
-                Colors.white,
-              ],
-            )),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.white.withOpacity(0),
+                  Colors.white,
+                ],
+              ),
+            ),
           ),
           appBar,
-          body
+          Padding(
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).padding.top + PizzaSizes.appBarHeight,
+            ),
+            child: body,
+          ),
         ],
       ),
     );

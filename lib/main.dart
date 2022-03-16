@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sgmk_flutter_pizza/injection/injection.dart';
 import 'package:sgmk_flutter_pizza/utils/router.dart';
 
-void main() {
+void main() async {
+  initializeDependencies();
   runApp(const MyApp());
 }
 

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sgmk_flutter_pizza/widgets/pizza_app_bar.dart';
 import 'package:sgmk_flutter_pizza/widgets/pizza_scaffold.dart';
 
-class MyOrdersPage extends StatelessWidget {
-  const MyOrdersPage({Key? key}) : super(key: key);
+class OrderDetailsPage extends StatelessWidget {
+  const OrderDetailsPage({Key? key}) : super(key: key);
 
-  static const String routeName = '/myOrders';
+  static const String routeName = '/orders';
 
   @override
   Widget build(BuildContext context) {

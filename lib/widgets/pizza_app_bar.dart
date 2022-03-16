@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sgmk_flutter_pizza/pages/admin_page.dart';
-import 'package:sgmk_flutter_pizza/pages/my_orders_page.dart';
+import 'package:sgmk_flutter_pizza/pages/add_pizza_page.dart';
+import 'package:sgmk_flutter_pizza/pages/order_details_page.dart';
 import 'package:sgmk_flutter_pizza/utils/ui.dart';
 
 class PizzaAppBar extends StatelessWidget {
@@ -21,7 +21,7 @@ class PizzaAppBar extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          height: 100,
+          height: PizzaSizes.appBarHeight,
           child: Row(
             children: [
               if (!firstInStack)
@@ -53,7 +53,7 @@ class PizzaAppBar extends StatelessWidget {
               ),
               if (firstInStack)
                 GestureDetector(
-                  onTap: () => Navigator.of(context).pushNamed(MyOrdersPage.routeName),
+                  onTap: () => Navigator.of(context).pushNamed(OrderDetailsPage.routeName),
                   child: SizedBox(
                     height: 24,
                     width: 24,
@@ -66,7 +66,7 @@ class PizzaAppBar extends StatelessWidget {
               const SizedBox(width: 50),
               if (firstInStack)
                 GestureDetector(
-                  onTap: () => Navigator.of(context).pushNamed(AdminPage.routeName),
+                  onTap: () => Navigator.of(context).pushNamed(AddPizzaPage.routeName),
                   child: SizedBox(
                     height: 30,
                     width: 30,
