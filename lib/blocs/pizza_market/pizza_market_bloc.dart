@@ -29,7 +29,6 @@ class PizzaMarketBloc extends Bloc<PizzaMarketEvent, PizzaMarketState> {
     emit(const PizzaMarketInitial());
     pizzaStock.removeWhere((pizza) => pizza.name == event.pizza.name);
     myOrders.add(event.pizza);
-    print(myOrders);
 
     emit(PizzaMarketSuccess(pizzaMarket: pizzaStock));
   }

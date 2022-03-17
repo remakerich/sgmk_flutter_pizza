@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sgmk_flutter_pizza/blocs/order_details/order_details_bloc.dart';
+import 'package:sgmk_flutter_pizza/injection/injection.dart';
 import 'package:sgmk_flutter_pizza/widgets/pizza_app_bar.dart';
+import 'package:sgmk_flutter_pizza/widgets/pizza_market_item.dart';
 import 'package:sgmk_flutter_pizza/widgets/pizza_scaffold.dart';
 
 class OrderDetailsPage extends StatelessWidget {
@@ -9,11 +13,34 @@ class OrderDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const PizzaScaffold(
-      appBar: PizzaAppBar(
-        title: 'Order Details',
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => getIt<OrderDetailsBloc>()..add(const OrderDetailsStarted()),
+        ),
+      ],
+      child: PizzaScaffold(
+        appBar: const PizzaAppBar(
+          title: 'Order Details',
+        ),
+        body: Builder(
+          builder: (context) {
+            final orderDetailsBlocState = context.watch<OrderDetailsBloc>().state;
+
+            return orderDetailsBlocState.maybeWhen(
+              success: (myOrders) => ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                padding: EdgeInsets.zero,
+                itemCount: myOrders.length,
+                itemBuilder: (context, index) {
+                  return PizzaMarketItem(pizza: myOrders[index]);
+                },
+              ),
+              orElse: () => const SizedBox(),
+            );
+          },
+        ),
       ),
-      body: SizedBox(),
     );
   }
 }
