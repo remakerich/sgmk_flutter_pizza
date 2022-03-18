@@ -19,7 +19,13 @@ class PizzaColors {
   static const primary = Color(0xFFF43F5E);
   static const shadowColor = Color.fromRGBO(90, 108, 234, 0.08);
   static const minusButton = Color.fromRGBO(244, 63, 94, 0.1);
-
+  static const pinkGradient = LinearGradient(
+    transform: GradientRotation(1.1),
+    colors: [
+      Color(0xFFFF7E95),
+      Color(0xFFFF1843),
+    ],
+  );
 }
 
 class PizzaSizes {

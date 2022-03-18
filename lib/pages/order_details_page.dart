@@ -21,38 +21,88 @@ class OrderDetailsPage extends StatelessWidget {
         builder: (context) {
           final orderDetailsBlocState = context.watch<OrderDetailsBloc>().state;
 
-          return Stack(
+          return Column(
             children: [
-              orderDetailsBlocState.maybeMap(
-                success: (state) => ListView.builder(
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  padding: EdgeInsets.zero,
-                  itemCount: state.myOrders.length,
-                  itemBuilder: (context, index) {
-                    return _OrderDetailsItem(pizza: state.myOrders[index]);
-                  },
+              Expanded(
+                child: orderDetailsBlocState.maybeMap(
+                  success: (state) => ListView.builder(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    itemCount: state.myOrders.length,
+                    itemBuilder: (context, index) {
+                      return _OrderDetailsItem(pizza: state.myOrders[index]);
+                    },
+                  ),
+                  orElse: () => const SizedBox(),
                 ),
-                orElse: () => const SizedBox(),
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: GestureDetector(
-                  onTap: () {
-                    const event = OrderDetailsOrderPlaced();
-                    context.read<OrderDetailsBloc>().add(event);
-                  },
-                  child: Container(
-                    height: 100,
-                    width: 100,
-                    color: Colors.red,
-                    child: Text(
-                      orderDetailsBlocState.maybeMap(
-                        success: (state) => '\$${state.totalPrice}',
-                        orElse: () => '\$0',
+              Container(
+                margin: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+                padding: const EdgeInsets.all(24),
+                height: 150,
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24),
+                  gradient: PizzaColors.pinkGradient,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Container(
+                      height: 1,
+                      color: Colors.white,
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Total',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            orderDetailsBlocState.maybeMap(
+                              success: (state) => PizzaFormatters.pizzaPrice(state.totalPrice),
+                              orElse: () => PizzaFormatters.pizzaPrice(0),
+                            ),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
+                    GestureDetector(
+                      onTap: () {
+                        const event = OrderDetailsOrderPlaced();
+                        context.read<OrderDetailsBloc>().add(event);
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: double.maxFinite,
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(32),
+                          color: Colors.white,
+                        ),
+                        child: const Text(
+                          'Place my order',
+                          style: TextStyle(
+                            color: PizzaColors.primary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               )
             ],
@@ -146,13 +196,7 @@ class _OrderDetailsItem extends StatelessWidget {
               width: 28,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(9),
-                gradient: const LinearGradient(
-                  transform: GradientRotation(1.1),
-                  colors: [
-                    Color(0xFFFF7E95),
-                    Color(0xFFFF1843),
-                  ],
-                ),
+                gradient: PizzaColors.pinkGradient,
               ),
               child: Image.asset(
                 PizzaAssets.plusIcon,
