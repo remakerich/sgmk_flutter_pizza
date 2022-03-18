@@ -11,7 +11,7 @@ List<Pizza> pizzaStock = [
   const Pizza(
     name: 'Buffalo',
     assetPicture: PizzaAssets.buffaloPizzaPicture,
-    quantity: 2,
+    quantity: 7,
     price: 10,
   ),
   const Pizza(
@@ -31,6 +31,12 @@ List<Pizza> pizzaStock = [
     assetPicture: PizzaAssets.mexicanPizzaPicture,
     quantity: 2,
     price: 13,
+  ),
+];
+
+List<Pizza> pizzaMarketItems = [
+  ...pizzaStock.map(
+    (pizza) => pizza.copyWith(quantity: 0),
   ),
 ];
 

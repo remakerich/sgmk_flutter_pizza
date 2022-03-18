@@ -19,7 +19,7 @@ class PizzaMarketBloc extends Bloc<PizzaMarketEvent, PizzaMarketState> {
     PizzaMarketStarted event,
     Emitter<PizzaMarketState> emit,
   ) async {
-    emit(PizzaMarketSuccess(pizzaMarket: pizzaStock));
+    emit(PizzaMarketSuccess(pizzaMarket: pizzaMarketItems));
   }
 
   Future<void> _handlePicked(
@@ -27,9 +27,9 @@ class PizzaMarketBloc extends Bloc<PizzaMarketEvent, PizzaMarketState> {
     Emitter<PizzaMarketState> emit,
   ) async {
     emit(const PizzaMarketInitial());
-    pizzaStock.removeWhere((pizza) => pizza.name == event.pizza.name);
+    pizzaMarketItems.removeWhere((pizza) => pizza.name == event.pizza.name);
     myOrders.add(event.pizza);
 
-    emit(PizzaMarketSuccess(pizzaMarket: pizzaStock));
+    emit(PizzaMarketSuccess(pizzaMarket: pizzaMarketItems));
   }
 }

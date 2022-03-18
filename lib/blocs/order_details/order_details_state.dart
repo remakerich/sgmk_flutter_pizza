@@ -6,5 +6,6 @@ class OrderDetailsState with _$OrderDetailsState {
 
   const factory OrderDetailsState.success({
     required List<Pizza> myOrders,
+    required int totalPrice,
   }) = OrderDetailsSuccess;
 }
