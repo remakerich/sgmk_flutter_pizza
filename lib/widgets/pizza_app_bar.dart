@@ -1,7 +1,11 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:sgmk_flutter_pizza/blocs/order_details/order_details_bloc.dart';
+import 'package:sgmk_flutter_pizza/blocs/pizza_market/pizza_market_bloc.dart';
 import 'package:sgmk_flutter_pizza/pages/add_pizza_page.dart';
 import 'package:sgmk_flutter_pizza/pages/order_details_page.dart';
 import 'package:sgmk_flutter_pizza/utils/ui.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PizzaAppBar extends StatelessWidget {
   const PizzaAppBar({
@@ -52,17 +56,46 @@ class PizzaAppBar extends StatelessWidget {
                 ),
               ),
               if (firstInStack)
-                GestureDetector(
-                  onTap: () => Navigator.of(context).pushNamed(OrderDetailsPage.routeName),
-                  child: SizedBox(
-                    height: 24,
-                    width: 24,
-                    child: Image.asset(
-                      PizzaAssets.ordersIcon,
-                      height: 24,
+                Builder(builder: (context) {
+                  context.watch<PizzaMarketBloc>();
+                  final pizzaMarketBlocState = context.watch<OrderDetailsBloc>().state;
+
+                  final badgeCount = pizzaMarketBlocState.maybeMap(
+                    success: (state) => state.myOrders.length,
+                    orElse: () => 0,
+                  );
+
+                  return Badge(
+                    showBadge: badgeCount != 0,
+                    shape: badgeCount < 10 ? BadgeShape.circle : BadgeShape.square,
+                    borderRadius: BorderRadius.circular(18),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 3,
                     ),
-                  ),
-                ),
+                    position: BadgePosition.topEnd(top: -14),
+                    elevation: 0,
+                    toAnimate: false,
+                    badgeColor: PizzaColors.primary,
+                    badgeContent: Text(
+                      badgeCount.toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    child: GestureDetector(
+                      onTap: () => Navigator.of(context).pushNamed(OrderDetailsPage.routeName),
+                      child: SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: Image.asset(
+                          PizzaAssets.ordersIcon,
+                          height: 24,
+                        ),
+                      ),
+                    ),
+                  );
+                }),
               const SizedBox(width: 50),
               if (firstInStack)
                 GestureDetector(

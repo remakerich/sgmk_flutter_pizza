@@ -24,8 +24,8 @@ class PizzaMarketPage extends StatelessWidget {
 
           return stockBlocState.maybeWhen(
             success: (pizzaStock) => ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              padding: EdgeInsets.zero,
+              physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + PizzaSizes.appBarHeight),
               itemCount: pizzaStock.length,
               itemBuilder: (context, index) {
                 return _PizzaMarketItem(pizza: pizzaStock[index]);

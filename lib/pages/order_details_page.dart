@@ -27,8 +27,8 @@ class OrderDetailsPage extends StatelessWidget {
                 child: orderDetailsBlocState.maybeMap(
                   success: (state) => ListView.builder(
                     shrinkWrap: true,
-                    physics: const BouncingScrollPhysics(),
-                    padding: EdgeInsets.zero,
+                    physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+                    padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + PizzaSizes.appBarHeight),
                     itemCount: state.myOrders.length,
                     itemBuilder: (context, index) {
                       return _OrderDetailsItem(pizza: state.myOrders[index]);
