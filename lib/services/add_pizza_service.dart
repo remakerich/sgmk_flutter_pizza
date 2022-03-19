@@ -80,6 +80,7 @@ class AddPizzaService {
       ),
     ];
 
+    myOrders = [];
     addedItems = [];
   }
 }
