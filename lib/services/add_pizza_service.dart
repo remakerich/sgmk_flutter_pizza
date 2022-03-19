@@ -57,7 +57,8 @@ class AddPizzaService {
   }
 
   static void save() {
-    for (final item in addedItems) {
+    final addedItemsCopy = [...addedItems];
+    for (final item in addedItemsCopy) {
       if (item.name.isEmpty) {
         addedItems.removeWhere((element) => element.id == item.id);
         continue;
@@ -66,16 +67,15 @@ class AddPizzaService {
         addedItems.removeWhere((element) => element.id == item.id);
         continue;
       }
-
-      stock.addAll([...addedItems]);
-
-      marketItems = [
-        ...stock.map(
-          (pizza) => pizza.copyWith(quantity: 0),
-        ),
-      ];
-
-      addedItems = [];
     }
+    stock.addAll([...addedItems]);
+
+    marketItems = [
+      ...stock.map(
+        (pizza) => pizza.copyWith(quantity: 0),
+      ),
+    ];
+
+    addedItems = [];
   }
 }
