@@ -67,6 +67,10 @@ class AddPizzaService {
         addedItems.removeWhere((element) => element.id == item.id);
         continue;
       }
+      if (item.quantity == 0) {
+        addedItems.removeWhere((element) => element.id == item.id);
+        continue;
+      }
     }
     stock.addAll([...addedItems]);
 
