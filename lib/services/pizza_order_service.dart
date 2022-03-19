@@ -6,8 +6,8 @@ class PizzaOrderService {
       if (order.quantity == 0) {
         continue;
       }
-      final pizzaInStock = stock.firstWhere((pizza) => pizza.name == order.name);
-      final index = stock.indexWhere((pizza) => pizza.name == order.name);
+      final pizzaInStock = stock.firstWhere((pizza) => pizza.id == order.id);
+      final index = stock.indexWhere((pizza) => pizza.id == order.id);
 
       final remainingPizza = pizzaInStock.copyWith(quantity: pizzaInStock.quantity - order.quantity);
       if (remainingPizza.quantity == 0) {
@@ -23,18 +23,18 @@ class PizzaOrderService {
       ),
     ];
 
-    myOrders.clear();
+    myOrders = [];
   }
 
   static int calculateTotalPrice() {
     return myOrders.map((pizza) => pizza.price * pizza.quantity).toList().reduce((value, element) => value + element);
   }
 
-  static void changeQuantity(int value, String pizzaName) {
-    final pizzaInStock = stock.firstWhere((pizza) => pizza.name == pizzaName);
+  static void changeQuantity(int value, String id) {
+    final pizzaInStock = stock.firstWhere((pizza) => pizza.id == id);
 
-    final initialPizza = myOrders.firstWhere((pizza) => pizza.name == pizzaName);
-    final index = myOrders.indexWhere((pizza) => pizza.name == pizzaName);
+    final initialPizza = myOrders.firstWhere((pizza) => pizza.id == id);
+    final index = myOrders.indexWhere((pizza) => pizza.id == id);
     final changedPizza = initialPizza.copyWith(quantity: initialPizza.quantity + value);
 
     if (changedPizza.quantity < 0 || changedPizza.quantity > pizzaInStock.quantity) {

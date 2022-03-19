@@ -14,7 +14,9 @@ dependencies:
   flutter_bloc: ^8.0.1
   get_it: ^7.2.0
   freezed_annotation: ^1.1.0
+  flutter_svg: ^1.0.0
   badges: ^2.0.2
+  uuid: 3.0.4
 
 dev_dependencies:
   flutter_test:

@@ -11,6 +11,7 @@ class PizzaAssets {
   static const sanMarzanoPizzaPicture = 'assets/san_marzano_pizza.png';
   static const minusIcon = 'assets/minus_icon.png';
   static const plusIcon = 'assets/plus_icon.png';
+  static const clearIcon = 'assets/cross.svg';
 }
 
 class PizzaColors {

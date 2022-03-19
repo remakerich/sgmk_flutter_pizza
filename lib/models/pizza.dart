@@ -5,6 +5,7 @@ part 'pizza.freezed.dart';
 @freezed
 class Pizza with _$Pizza {
   const factory Pizza({
+    @Default('') String id,
     @Default('') String name,
     @Default('') String assetPicture,
     @Default(0) int quantity,

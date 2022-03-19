@@ -34,7 +34,7 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
   ) async {
     emit(const OrderDetailsInitial());
 
-    PizzaOrderService.changeQuantity(-1, event.pizza.name);
+    PizzaOrderService.changeQuantity(-1, event.pizza.id);
     final totalPrice = PizzaOrderService.calculateTotalPrice();
 
     emit(OrderDetailsSuccess(
@@ -49,7 +49,7 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
   ) async {
     emit(const OrderDetailsInitial());
 
-    PizzaOrderService.changeQuantity(1, event.pizza.name);
+    PizzaOrderService.changeQuantity(1, event.pizza.id);
     final totalPrice = PizzaOrderService.calculateTotalPrice();
 
     emit(OrderDetailsSuccess(

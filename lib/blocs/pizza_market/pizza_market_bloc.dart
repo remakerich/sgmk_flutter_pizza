@@ -27,7 +27,7 @@ class PizzaMarketBloc extends Bloc<PizzaMarketEvent, PizzaMarketState> {
     Emitter<PizzaMarketState> emit,
   ) async {
     emit(const PizzaMarketInitial());
-    marketItems.removeWhere((pizza) => pizza.name == event.pizza.name);
+    marketItems.removeWhere((pizza) => pizza.id == event.pizza.id);
     myOrders.add(event.pizza);
 
     emit(PizzaMarketSuccess(marketItems));

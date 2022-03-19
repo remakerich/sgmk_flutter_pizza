@@ -84,6 +84,7 @@ class OrderDetailsPage extends StatelessWidget {
                       onTap: () {
                         const event = OrderDetailsOrderPlaced();
                         context.read<OrderDetailsBloc>().add(event);
+                        Navigator.of(context).pop();
                       },
                       child: Container(
                         alignment: Alignment.center,

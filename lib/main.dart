@@ -43,6 +43,13 @@ class MyApp extends StatelessWidget {
               context.read<OrderDetailsBloc>().add(const OrderDetailsStarted());
             },
           ),
+          BlocListener<AddPizzaBloc, AddPizzaState>(
+            listenWhen: (_, state) => state is AddPizzaSuccess,
+            listener: (context, _) {
+              const event = PizzaMarketStarted();
+              context.read<PizzaMarketBloc>().add(event);
+            },
+          ),
         ],
         child: const MaterialApp(
           debugShowCheckedModeBanner: false,
