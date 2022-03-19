@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sgmk_flutter_pizza/blocs/add_pizza/add_pizza_bloc.dart';
 import 'package:sgmk_flutter_pizza/blocs/order_details/order_details_bloc.dart';
 import 'package:sgmk_flutter_pizza/blocs/pizza_market/pizza_market_bloc.dart';
 import 'package:sgmk_flutter_pizza/injection/injection.dart';
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => getIt<OrderDetailsBloc>()..add(const OrderDetailsStarted()),
+        ),
+        BlocProvider(
+          create: (_) => getIt<AddPizzaBloc>()..add(const AddPizzaStarted()),
         ),
       ],
       child: MultiBlocListener(

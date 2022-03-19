@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sgmk_flutter_pizza/blocs/order_details/order_details_bloc.dart';
 import 'package:sgmk_flutter_pizza/models/pizza.dart';
 import 'package:sgmk_flutter_pizza/utils/ui.dart';
+import 'package:sgmk_flutter_pizza/widgets/add_remove_buttons.dart';
 import 'package:sgmk_flutter_pizza/widgets/pizza_app_bar.dart';
 import 'package:sgmk_flutter_pizza/widgets/pizza_scaffold.dart';
 
@@ -163,21 +164,8 @@ class _OrderDetailsItem extends StatelessWidget {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () => context.read<OrderDetailsBloc>().add(OrderDetailsSubtracted(pizza: pizza)),
-            child: Container(
-              alignment: Alignment.center,
-              height: 28,
-              width: 28,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(9),
-                color: PizzaColors.minusButton,
-              ),
-              child: Image.asset(
-                PizzaAssets.minusIcon,
-                width: 16,
-              ),
-            ),
+          RemoveButton(
+            onTap: () => context.read<OrderDetailsBloc>().add(OrderDetailsSubtracted(pizza)),
           ),
           const SizedBox(width: 12),
           Text(
@@ -188,21 +176,8 @@ class _OrderDetailsItem extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 12),
-          GestureDetector(
-            onTap: () => context.read<OrderDetailsBloc>().add(OrderDetailsAdded(pizza: pizza)),
-            child: Container(
-              alignment: Alignment.center,
-              height: 28,
-              width: 28,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(9),
-                gradient: PizzaColors.pinkGradient,
-              ),
-              child: Image.asset(
-                PizzaAssets.plusIcon,
-                width: 16,
-              ),
-            ),
+          AddButton(
+            onTap: () => context.read<OrderDetailsBloc>().add(OrderDetailsAdded(pizza)),
           ),
         ],
       ),

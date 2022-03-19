@@ -38,13 +38,6 @@ class PizzaScaffold extends StatelessWidget {
           ),
           body,
           appBar,
-
-          // Padding(
-          //   padding: EdgeInsets.only(
-          //     top: MediaQuery.of(context).padding.top + PizzaSizes.appBarHeight,
-          //   ),
-          //   child: ,
-          // ),
         ],
       ),
     );

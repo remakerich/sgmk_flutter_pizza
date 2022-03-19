@@ -4,7 +4,5 @@ part of 'pizza_market_bloc.dart';
 class PizzaMarketState with _$PizzaMarketState {
   const factory PizzaMarketState.initial() = PizzaMarketInitial;
 
-  const factory PizzaMarketState.success({
-    required List<Pizza> pizzaMarket,
-  }) = PizzaMarketSuccess;
+  const factory PizzaMarketState.success(List<Pizza> items) = PizzaMarketSuccess;
 }

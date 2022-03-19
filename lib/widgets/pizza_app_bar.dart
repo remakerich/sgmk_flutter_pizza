@@ -11,9 +11,11 @@ class PizzaAppBar extends StatelessWidget {
   const PizzaAppBar({
     Key? key,
     required this.title,
+    this.actionButtons = const SizedBox(),
   }) : super(key: key);
 
   final String title;
+  final Widget actionButtons;
 
   @override
   Widget build(BuildContext context) {
@@ -56,47 +58,49 @@ class PizzaAppBar extends StatelessWidget {
                 ),
               ),
               if (firstInStack)
-                Builder(builder: (context) {
-                  context.watch<PizzaMarketBloc>();
-                  final pizzaMarketBlocState = context.watch<OrderDetailsBloc>().state;
+                Builder(
+                  builder: (context) {
+                    context.watch<PizzaMarketBloc>();
+                    final pizzaMarketBlocState = context.watch<OrderDetailsBloc>().state;
 
-                  final badgeCount = pizzaMarketBlocState.maybeMap(
-                    success: (state) => state.myOrders.length,
-                    orElse: () => 0,
-                  );
+                    final badgeCount = pizzaMarketBlocState.maybeMap(
+                      success: (state) => state.myOrders.length,
+                      orElse: () => 0,
+                    );
 
-                  return Badge(
-                    showBadge: badgeCount != 0,
-                    shape: badgeCount < 10 ? BadgeShape.circle : BadgeShape.square,
-                    borderRadius: BorderRadius.circular(18),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 6,
-                      vertical: 3,
-                    ),
-                    position: BadgePosition.topEnd(top: -14),
-                    elevation: 0,
-                    toAnimate: false,
-                    badgeColor: PizzaColors.primary,
-                    badgeContent: Text(
-                      badgeCount.toString(),
-                      style: const TextStyle(
-                        color: Colors.white,
+                    return Badge(
+                      showBadge: badgeCount != 0,
+                      shape: badgeCount < 10 ? BadgeShape.circle : BadgeShape.square,
+                      borderRadius: BorderRadius.circular(18),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 3,
                       ),
-                    ),
-                    child: GestureDetector(
-                      onTap: () => Navigator.of(context).pushNamed(OrderDetailsPage.routeName),
-                      child: SizedBox(
-                        height: 24,
-                        width: 24,
-                        child: Image.asset(
-                          PizzaAssets.ordersIcon,
-                          height: 24,
+                      position: BadgePosition.topEnd(top: -14),
+                      elevation: 0,
+                      toAnimate: false,
+                      badgeColor: PizzaColors.primary,
+                      badgeContent: Text(
+                        badgeCount.toString(),
+                        style: const TextStyle(
+                          color: Colors.white,
                         ),
                       ),
-                    ),
-                  );
-                }),
-              const SizedBox(width: 50),
+                      child: GestureDetector(
+                        onTap: () => Navigator.of(context).pushNamed(OrderDetailsPage.routeName),
+                        child: SizedBox(
+                          height: 24,
+                          width: 24,
+                          child: Image.asset(
+                            PizzaAssets.ordersIcon,
+                            height: 24,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              if (firstInStack) const SizedBox(width: 50),
               if (firstInStack)
                 GestureDetector(
                   onTap: () => Navigator.of(context).pushNamed(AddPizzaPage.routeName),
@@ -107,7 +111,8 @@ class PizzaAppBar extends StatelessWidget {
                       PizzaAssets.adminIcon,
                     ),
                   ),
-                )
+                ),
+              if (!firstInStack) actionButtons,
             ],
           ),
         ),

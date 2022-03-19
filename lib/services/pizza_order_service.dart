@@ -6,19 +6,19 @@ class PizzaOrderService {
       if (order.quantity == 0) {
         continue;
       }
-      final pizzaInStock = pizzaStock.firstWhere((pizza) => pizza.name == order.name);
-      final index = pizzaStock.indexWhere((pizza) => pizza.name == order.name);
+      final pizzaInStock = stock.firstWhere((pizza) => pizza.name == order.name);
+      final index = stock.indexWhere((pizza) => pizza.name == order.name);
 
       final remainingPizza = pizzaInStock.copyWith(quantity: pizzaInStock.quantity - order.quantity);
       if (remainingPizza.quantity == 0) {
-        pizzaStock.removeAt(index);
+        stock.removeAt(index);
       } else {
-        pizzaStock.replaceRange(index, index + 1, [remainingPizza]);
+        stock.replaceRange(index, index + 1, [remainingPizza]);
       }
     }
 
-    pizzaMarketItems = [
-      ...pizzaStock.map(
+    marketItems = [
+      ...stock.map(
         (pizza) => pizza.copyWith(quantity: 0),
       ),
     ];
@@ -31,7 +31,7 @@ class PizzaOrderService {
   }
 
   static void changeQuantity(int value, String pizzaName) {
-    final pizzaInStock = pizzaStock.firstWhere((pizza) => pizza.name == pizzaName);
+    final pizzaInStock = stock.firstWhere((pizza) => pizza.name == pizzaName);
 
     final initialPizza = myOrders.firstWhere((pizza) => pizza.name == pizzaName);
     final index = myOrders.indexWhere((pizza) => pizza.name == pizzaName);

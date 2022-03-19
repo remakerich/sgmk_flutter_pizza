@@ -50,11 +50,7 @@ class _PizzaMarketItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.read<PizzaMarketBloc>().add(
-            PizzaMarketPicked(
-              pizza: pizza,
-            ),
-          ),
+      onTap: () => context.read<PizzaMarketBloc>().add(PizzaMarketPicked(pizza)),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         padding: const EdgeInsets.fromLTRB(12, 12, 32, 12),

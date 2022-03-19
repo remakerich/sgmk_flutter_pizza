@@ -1,7 +1,7 @@
 import 'package:sgmk_flutter_pizza/models/pizza.dart';
 import 'package:sgmk_flutter_pizza/utils/ui.dart';
 
-List<Pizza> pizzaStock = [
+List<Pizza> stock = [
   const Pizza(
     name: 'Original',
     assetPicture: PizzaAssets.originalPizzaPicture,
@@ -34,10 +34,12 @@ List<Pizza> pizzaStock = [
   ),
 ];
 
-List<Pizza> pizzaMarketItems = [
-  ...pizzaStock.map(
+List<Pizza> marketItems = [
+  ...stock.map(
     (pizza) => pizza.copyWith(quantity: 0),
   ),
 ];
 
 List<Pizza> myOrders = [];
+
+List<Pizza> addedItems = [];
