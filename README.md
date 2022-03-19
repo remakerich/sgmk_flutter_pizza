@@ -15,6 +15,13 @@ Unit тесты
 
 Дизайн: https://www.figma.com/file/Rt2mzsKUMh6QFRyzbC9ZHw/Pizza-Market?node-id=0%3A1
 
-## Выполнение
+## Запуск приложения
+
+- `git clone https://github.com/remakerich/sgmk_flutter_pizza.git`
+- `cd sgmk_flutter_pizza`
+- `flutter pub get`
+- `flutter pub run build_runner watch --delete-conflicting-outputs`
+- подключите Android устройство или эмулятор
+- `flutter run -d <название_устройства>`
 
 
