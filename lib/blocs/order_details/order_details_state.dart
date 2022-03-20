@@ -8,4 +8,6 @@ class OrderDetailsState with _$OrderDetailsState {
     required List<Pizza> myOrders,
     required int totalPrice,
   }) = OrderDetailsSuccess;
+
+  const factory OrderDetailsState.done() = OrderDetailsDone;
 }

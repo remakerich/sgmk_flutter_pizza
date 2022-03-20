@@ -66,9 +66,6 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
 
     PizzaOrderService.getPizzaFromStock();
 
-    emit(const OrderDetailsSuccess(
-      myOrders: [],
-      totalPrice: 0,
-    ));
+    emit(const OrderDetailsDone());
   }
 }

@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [
           BlocListener<OrderDetailsBloc, OrderDetailsState>(
-            listenWhen: (_, state) => state is OrderDetailsSuccess,
+            listenWhen: (_, state) => state is OrderDetailsDone,
             listener: (context, _) {
               const event = PizzaMarketStarted();
               context.read<PizzaMarketBloc>().add(event);
