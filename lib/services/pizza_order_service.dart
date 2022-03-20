@@ -8,19 +8,17 @@ class PizzaOrderService {
       }
       final pizzaInStock = stock.firstWhere((pizza) => pizza.id == order.id);
       final index = stock.indexWhere((pizza) => pizza.id == order.id);
-
       final remainingPizza = pizzaInStock.copyWith(quantity: pizzaInStock.quantity - order.quantity);
-      if (remainingPizza.quantity == 0) {
-        stock.removeAt(index);
-      } else {
-        stock.replaceRange(index, index + 1, [remainingPizza]);
-      }
+      stock.replaceRange(index, index + 1, [remainingPizza]);
     }
 
     marketItems = [
-      ...stock.map(
-        (pizza) => pizza.copyWith(quantity: 0),
-      ),
+      ...stock
+          .where((pizza) => pizza.name.isNotEmpty)
+          .where((pizza) => pizza.price != 0)
+          .where((pizza) => pizza.quantity != 0)
+          .map((pizza) => pizza.copyWith(quantity: 0))
+          .toList(),
     ];
 
     myOrders = [];

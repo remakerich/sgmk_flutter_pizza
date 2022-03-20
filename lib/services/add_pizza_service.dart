@@ -6,15 +6,15 @@ import 'dart:math' as math;
 
 class AddPizzaService {
   static void changeQuantity(int value, String id) {
-    final initialPizza = addedItems.firstWhere((pizza) => pizza.id == id);
-    final index = addedItems.indexWhere((pizza) => pizza.id == id);
+    final initialPizza = stock.firstWhere((pizza) => pizza.id == id);
+    final index = stock.indexWhere((pizza) => pizza.id == id);
     final changedPizza = initialPizza.copyWith(quantity: initialPizza.quantity + value);
 
     if (changedPizza.quantity < 0) {
       return;
     }
 
-    addedItems.replaceRange(index, index + 1, [changedPizza]);
+    stock.replaceRange(index, index + 1, [changedPizza]);
   }
 
   static void editPizza(String price, String name, String id) {
@@ -25,15 +25,15 @@ class AddPizzaService {
       return;
     }
 
-    final initialPizza = addedItems.firstWhere((pizza) => pizza.id == id);
-    final index = addedItems.indexWhere((pizza) => pizza.id == id);
+    final initialPizza = stock.firstWhere((pizza) => pizza.id == id);
+    final index = stock.indexWhere((pizza) => pizza.id == id);
 
     final changedPizza = initialPizza.copyWith(
       price: priceConverted,
       name: name,
     );
 
-    addedItems.replaceRange(index, index + 1, [changedPizza]);
+    stock.replaceRange(index, index + 1, [changedPizza]);
   }
 
   static void createPizza() {
@@ -53,34 +53,20 @@ class AddPizzaService {
       price: 0,
     );
 
-    addedItems.add(newPizza);
+    stock.add(newPizza);
   }
 
   static void save() {
-    final addedItemsCopy = [...addedItems];
-    for (final item in addedItemsCopy) {
-      if (item.name.isEmpty) {
-        addedItems.removeWhere((element) => element.id == item.id);
-        continue;
-      }
-      if (item.price == 0) {
-        addedItems.removeWhere((element) => element.id == item.id);
-        continue;
-      }
-      if (item.quantity == 0) {
-        addedItems.removeWhere((element) => element.id == item.id);
-        continue;
-      }
-    }
-    stock.addAll([...addedItems]);
+    marketItems = [];
+    myOrders = [];
 
     marketItems = [
-      ...stock.map(
-        (pizza) => pizza.copyWith(quantity: 0),
-      ),
+      ...stock
+          .where((pizza) => pizza.name.isNotEmpty)
+          .where((pizza) => pizza.price != 0)
+          .where((pizza) => pizza.quantity != 0)
+          .map((pizza) => pizza.copyWith(quantity: 0))
+          .toList(),
     ];
-
-    myOrders = [];
-    addedItems = [];
   }
 }

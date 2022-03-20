@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:sgmk_flutter_pizza/blocs/add_pizza/add_pizza_bloc.dart';
 import 'package:sgmk_flutter_pizza/blocs/order_details/order_details_bloc.dart';
 import 'package:sgmk_flutter_pizza/blocs/pizza_market/pizza_market_bloc.dart';
 import 'package:sgmk_flutter_pizza/pages/add_pizza_page.dart';
@@ -103,7 +104,11 @@ class PizzaAppBar extends StatelessWidget {
               if (firstInStack) const SizedBox(width: 50),
               if (firstInStack)
                 GestureDetector(
-                  onTap: () => Navigator.of(context).pushNamed(AddPizzaPage.routeName),
+                  onTap: () {
+                    const event = AddPizzaStarted();
+                    context.read<AddPizzaBloc>().add(event);
+                    Navigator.of(context).pushNamed(AddPizzaPage.routeName);
+                  },
                   child: SizedBox(
                     height: 30,
                     width: 30,

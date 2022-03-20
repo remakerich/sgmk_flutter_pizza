@@ -4,5 +4,5 @@ part of 'add_pizza_bloc.dart';
 class AddPizzaState with _$AddPizzaState {
   const factory AddPizzaState.initial() = AddPizzaInitial;
 
-  const factory AddPizzaState.success(List<Pizza> addedItems) = AddPizzaSuccess;
+  const factory AddPizzaState.success(List<Pizza> stock) = AddPizzaSuccess;
 }

@@ -24,7 +24,9 @@ class AddPizzaBloc extends Bloc<AddPizzaEvent, AddPizzaState> {
     AddPizzaStarted event,
     Emitter<AddPizzaState> emit,
   ) async {
-    emit(AddPizzaSuccess(addedItems));
+    emit(const AddPizzaInitial());
+
+    emit(AddPizzaSuccess(stock));
   }
 
   Future<void> _handleSaved(
@@ -57,7 +59,7 @@ class AddPizzaBloc extends Bloc<AddPizzaEvent, AddPizzaState> {
 
     AddPizzaService.changeQuantity(1, event.pizza.id);
 
-    emit(AddPizzaSuccess(addedItems));
+    emit(AddPizzaSuccess(stock));
   }
 
   Future<void> _handleSubtracted(
@@ -68,7 +70,7 @@ class AddPizzaBloc extends Bloc<AddPizzaEvent, AddPizzaState> {
 
     AddPizzaService.changeQuantity(-1, event.pizza.id);
 
-    emit(AddPizzaSuccess(addedItems));
+    emit(AddPizzaSuccess(stock));
   }
 
   Future<void> _handleCreated(
@@ -79,6 +81,6 @@ class AddPizzaBloc extends Bloc<AddPizzaEvent, AddPizzaState> {
 
     AddPizzaService.createPizza();
 
-    emit(AddPizzaSuccess(addedItems));
+    emit(AddPizzaSuccess(stock));
   }
 }

@@ -19,6 +19,10 @@ class PizzaMarketBloc extends Bloc<PizzaMarketEvent, PizzaMarketState> {
     PizzaMarketStarted event,
     Emitter<PizzaMarketState> emit,
   ) async {
+    emit(const PizzaMarketInitial());
+
+    
+
     emit(PizzaMarketSuccess(marketItems));
   }
 

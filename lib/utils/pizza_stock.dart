@@ -5,5 +5,3 @@ List<Pizza> stock = [];
 List<Pizza> marketItems = [];
 
 List<Pizza> myOrders = [];
-
-List<Pizza> addedItems = [];
