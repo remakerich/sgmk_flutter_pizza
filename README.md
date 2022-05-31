@@ -1,3 +1,6 @@
+
+![image](https://user-images.githubusercontent.com/85007290/171269440-40ba8a62-9cb3-4bc1-a5bb-62bf52bc433e.png)
+
 ## Задание
 
 Необходимо создать приложение для заказа пиццы с админкой. 
